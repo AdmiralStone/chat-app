@@ -20,3 +20,9 @@
 - Added `authMiddleware.js` to verify JWT tokens
 - Protects routes using the `Authorization: Bearer <token>` header
 - Exposes `req.user` to downstream handlers
+
+## Milestone 4: Chat Messaging API
+
+- Created `messages` table with sender/receiver, content, timestamps
+- Added `POST /api/messages` to send a message
+- Added `GET /api/messages/:userId` to retrieve conversation between two users

@@ -27,12 +27,8 @@ app.get('/', (_req, res) => {
   res.send('Chat API is running');
 });
 
-app.get('/api/protected', verifyToken,(req,res) => {
-    res.json({
-        message:'You hvae accessed a protected route!',
-        user:req.user,
-    });
-});
+const messageRoutes = require('./routes/messageRoutes');
+app.use('/api/messages',messageRoutes);
 
 // 404 Fallback
 app.use((_req, res) => {
