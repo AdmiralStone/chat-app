@@ -14,3 +14,9 @@
 - Passwords hashed using `bcrypt`
 - JWT issued for 3 days after login
 - Random avatar assigned using DiceBear API
+
+## Milestone 3: Auth Middleware
+
+- Added `authMiddleware.js` to verify JWT tokens
+- Protects routes using the `Authorization: Bearer <token>` header
+- Exposes `req.user` to downstream handlers

@@ -18,12 +18,20 @@ app.use((req, res, next) => {
 
 // Routes
 const authRoutes = require('./routes/authRoutes');
+const verifyToken = require('./middleware/authMiddleware');
 app.use('/api/auth', authRoutes);
 
 // Test route
 app.get('/', (_req, res) => {
   console.log("GET / hit");
   res.send('Chat API is running');
+});
+
+app.get('/api/protected', verifyToken,(req,res) => {
+    res.json({
+        message:'You hvae accessed a protected route!',
+        user:req.user,
+    });
 });
 
 // 404 Fallback
