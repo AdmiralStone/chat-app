@@ -30,15 +30,20 @@ const markMessagesAsRead = async(receiverId, senderId) => {
 };
 
 /**
- * Gets count of unread messages grouped by sender
+ * Gets count of unread messages grouped by sender, along with username and profile pic
  * @param {number} receiverId - current user
  */
 const getUnreadCounts = (receiverId) => {
-    return knex('tblMessages')
-        .select('intSenderId')
-        .count('* as intUnreadCount')
-        .where({intReceiverId: receiverId, bitIsRead:false})
-        .groupBy('intSenderId');
+    return knex('tblMessages as m')
+        .select(
+            'm.intSenderId',
+            'u.strUsername',
+            'u.strProfilePicLink',
+            knex.raw('COUNT(*) as intUnreadCount')
+        )
+        .where({'m.intReceiverId':receiverId , 'm.bitIsRead':false})
+        .join('tblUsers as u' , 'm.intSenderId' , 'u.intId')
+        .groupBy('m.intSenderId','u.strUsername','u.strProfilePicLink');
 }
 
 
