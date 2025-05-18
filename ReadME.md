@@ -26,3 +26,8 @@
 - Created `messages` table with sender/receiver, content, timestamps
 - Added `POST /api/messages` to send a message
 - Added `GET /api/messages/:userId` to retrieve conversation between two users
+
+## Milestone 5: Read Receipts & Unread Count
+
+- Added API to mark all messages from a user as read: `POST /api/messages/:userId/read`
+- Added API to get unread message counts grouped by sender: `GET /api/messages/unread/counts`
